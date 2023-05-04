@@ -21,7 +21,7 @@ const EditarPartido = ({modal, toggle, ActualizarPartido, PartidoObj}) => {
     useEffect(() => {
         setPartidoName(PartidoObj.Name)
         setDescription(PartidoObj.Description)
-    },[])
+    },[PartidoObj.Name, PartidoObj.Description]);
 
     const handleUpdate = (e) => {
         e.preventDefault();
@@ -31,17 +31,18 @@ const EditarPartido = ({modal, toggle, ActualizarPartido, PartidoObj}) => {
         ActualizarPartido(tempObj)
     }
 
+    //ventana modal para editar partido
     return (
         <Modal isOpen={modal} toggle={toggle}>
             <ModalHeader toggle={toggle}>Actualizar Partido</ModalHeader>
             <ModalBody>
             
                     <div className = "form-group">
-                        <label>Task Name</label>
+                        <label>Titulo</label>
                         <input type="text" className = "form-control" value = {PartidoName} onChange = {handleChange} name = "PartidoName"/>
                     </div>
                     <div className = "form-group">  
-                        <label>Description</label>
+                        <label>Descripción</label>
                         <textarea rows = "5" className = "form-control" value = {description} onChange = {handleChange} name = "description"></textarea>
                     </div>
                 
