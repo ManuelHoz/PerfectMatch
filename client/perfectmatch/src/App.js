@@ -10,7 +10,6 @@ function App() {
       </header>
       <body>
         <ListaDePartidos />
-        <>hola</>
       </body>
     </div>
   );
