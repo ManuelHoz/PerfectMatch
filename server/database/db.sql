@@ -1,4 +1,4 @@
-CREATE DATABASE taskdb;
+CREATE DATABASE partidosdb;
 
 CREATE TABLE evento(
     id SERIAL PRIMARY KEY,
