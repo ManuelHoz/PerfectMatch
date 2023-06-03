@@ -1,31 +1,30 @@
 const {Router} = require('express');
 const pool = require('../db');
+const { getMatches }= require('../controllers/task.controllers');
 
 const router= Router();
 
 router.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.send('Bienvenido al servidor de PerfectMatch');
 });
 
 //CRUD DE LOS PARTIDOS
 
-router.get('/partidos', (req, res) => {
-    res.send('retornando partidos');
+router.get('/eventos', getMatches);
+
+router.get('/eventos/', (req, res) => {
+    res.send('retornando evento');
 });
 
-router.get('/partidos/10', (req, res) => {
-    res.send('retornando partido');
+router.post('/eventos', (req, res) => {
+    res.send('creando eventos');
 });
 
-router.post('/partidos', (req, res) => {
-    res.send('creando partidos');
+router.delete('/eventos', (req, res) => {
+    res.send('borrando eventos');
 });
 
-router.delete('/partidos', (req, res) => {
-    res.send('borrando partidos');
-});
-
-router.put('/partidos', (req, res) => {
-    res.send('actualizando partidos');
+router.put('/eventos', (req, res) => {
+    res.send('actualizando eventos');
 });
 module.exports = router;
