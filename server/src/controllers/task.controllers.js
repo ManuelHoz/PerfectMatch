@@ -1,5 +1,7 @@
 //CRUD EVENTO
 
+const pool = require("../db");
+
 const getEventos= async (req, res) => {
     res.send('mostarndo eventos');
 
@@ -10,6 +12,20 @@ const getEvento= async (req, res) => {
 }
 
 const createEvento= async (req, res) => {
+    /*
+    CREATE TABLE evento(
+        id SERIAL PRIMARY KEY,
+        titulo VARCHAR(100) NOT NULL,
+        descripcion VARCHAR(255),
+        capacidad_de_personas INT NOT NULL
+    );
+    */
+    const evento = req.body;
+    pool.query(
+        'INSERT INTO evento (titulo, descripcion, capacidad_de_personas) VALUES ($1, $2, $3)', 
+        [evento.titulo, 
+        evento.descripcion, 
+        evento.capacidad_de_personas]);
     res.send('creando evento');
 }
 

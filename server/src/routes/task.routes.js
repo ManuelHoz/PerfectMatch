@@ -1,6 +1,6 @@
 const {Router} = require('express');
 const pool = require('../db');
-const { getMatches }= require('../controllers/task.controllers');
+const { getEventos }= require('../controllers/task.controllers');
 
 const router= Router();
 
@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
 
 //CRUD DE LOS PARTIDOS
 
-router.get('/eventos', getMatches);
+router.get('/eventos', getEventos);
 
 router.get('/eventos/', (req, res) => {
     res.send('retornando evento');
