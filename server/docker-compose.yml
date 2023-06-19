@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  server:
+    build: .
+    ports:
+      - "4000:4000"
+    links:
+      - POSTGRES
+  POSTGRES:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=PerfectMatch
+      - POSTGRES_PASSWORD=1234567890
+      - POSTGRES_DB=PerfectMatch
