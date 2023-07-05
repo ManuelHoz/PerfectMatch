@@ -46,8 +46,10 @@
   text-align: center;
 }
 
+
 .task-container {
   height: 600px;
+  margin-bottom: 20px;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
