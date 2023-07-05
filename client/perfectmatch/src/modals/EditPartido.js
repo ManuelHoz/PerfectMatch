@@ -7,7 +7,7 @@ const EditarPartido = ({ modal, toggle, ActualizarPartido, PartidoObj }) => {
   const [SelectedOption, setSelectedOption] = useState('');
   const [SelectedOption2, setSelectedOption2] = useState('');
   const [Options2, setOptions2] = useState([]);
-  const [time, setTime] = useState('');
+  const [Horario, setHorario] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,8 +28,8 @@ const EditarPartido = ({ modal, toggle, ActualizarPartido, PartidoObj }) => {
       }
     } else if (name === 'selectedOption2') {
       setSelectedOption2(value);
-    } else if (name === 'time') {
-      setTime(value);
+    } else if (name === 'horario') {
+      setHorario(value);
     }
   };
 
@@ -38,7 +38,7 @@ const EditarPartido = ({ modal, toggle, ActualizarPartido, PartidoObj }) => {
     setDescription(PartidoObj.Description);
     setSelectedOption(PartidoObj.SelectedOption);
     setSelectedOption2(PartidoObj.SelectedOption2);
-    setTime(PartidoObj.Time);
+    setHorario(PartidoObj.Horario);
     if (PartidoObj.SelectedOption === 'Actividad Fisica') {
       setOptions2(['Fútbol', 'Vóley', 'Tenis']);
     } else if (PartidoObj.SelectedOption === 'Actividad Virtual') {
@@ -53,7 +53,7 @@ const EditarPartido = ({ modal, toggle, ActualizarPartido, PartidoObj }) => {
       Description: description,
       SelectedOption,
       SelectedOption2,
-      Time: time,
+      Horario,
     };
     ActualizarPartido(updatedPartido);
   };
@@ -64,43 +64,20 @@ const EditarPartido = ({ modal, toggle, ActualizarPartido, PartidoObj }) => {
       <ModalBody>
         <div className="form-group">
           <label>Titulo</label>
-          <input
-            type="text"
-            className="form-control"
-            value={PartidoName}
-            onChange={handleChange}
-            name="PartidoName"
-          />
+          <input type="text" className="form-control" value={PartidoName} onChange={handleChange} name="PartidoName" />
         </div>
         <div className="form-group">
           <label>Descripción</label>
-          <textarea
-            rows="5"
-            className="form-control"
-            value={description}
-            onChange={handleChange}
-            name="description"
-          ></textarea>
+          <textarea rows="5" className="form-control" value={description} onChange={handleChange} name="description"></textarea>
         </div>
         <div className="form-group">
           <label>Horario</label>
-          <input
-            type="text"
-            className="form-control"
-            value={time}
-            onChange={handleChange}
-            name="time"
-          />
+          <input type="text" className="form-control" value={Horario} onChange={handleChange} name="horario" />
         </div>
         <div className="form-group d-flex">
           <div className="mr-2 flex-grow-1">
             <label>Seleccionar opción 1</label>
-            <select
-              className="form-control"
-              value={SelectedOption}
-              onChange={handleChange}
-              name="selectedOption"
-            >
+            <select className="form-control" value={SelectedOption} onChange={handleChange} name="selectedOption">
               <option value="">Seleccionar opción</option>
               <option value="Actividad Fisica">Actividad Fisica</option>
               <option value="Actividad Virtual">Actividad Virtual</option>
@@ -108,12 +85,7 @@ const EditarPartido = ({ modal, toggle, ActualizarPartido, PartidoObj }) => {
           </div>
           <div className="flex-grow-1">
             <label>Seleccionar opción 2</label>
-            <select
-              className="form-control"
-              value={SelectedOption2}
-              onChange={handleChange}
-              name="selectedOption2"
-            >
+            <select className="form-control" value={SelectedOption2} onChange={handleChange} name="selectedOption2">
               <option value="">Seleccionar opción</option>
               {Options2.map((option, index) => (
                 <option key={index} value={option}>
@@ -127,7 +99,7 @@ const EditarPartido = ({ modal, toggle, ActualizarPartido, PartidoObj }) => {
       <ModalFooter>
         <Button color="primary" onClick={handleUpdate}>
           Update
-        </Button>
+        </Button>{' '}
         <Button color="secondary" onClick={toggle}>
           Cancel
         </Button>
