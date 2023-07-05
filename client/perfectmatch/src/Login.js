@@ -1,23 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { useEffect } from 'react';
 
 export const LoginButton = () => {
-  const { loginWithRedirect } = useAuth0();
-  const { isAuthenticated, user } = useAuth0();
+  const { loginWithRedirect, isAuthenticated, user } = useAuth0();
 
   useEffect(() => {
     isAuthenticated && console.log("user: ", user);
-    
-  }, [loginWithRedirect]);
-
-
+  }, [isAuthenticated, user]);
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
-      <button onClick={() => loginWithRedirect()} style={{ backgroundColor: 'green', color: 'white' }}>
-        Login
-      </button>
+    <div style={{ display: 'flex', justifyContent: 'center', marginTop: '60px' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', marginLeft: 'auto', marginRight: 'auto' }}>
+        <button
+          onClick={() => loginWithRedirect()}
+          style={{
+            backgroundColor: 'green',
+            color: 'white',
+            fontSize: '18px',
+            width: '200px',
+            height: '50px',
+          }}
+        >
+          Login
+        </button>
+      </div>
     </div>
   );
 };

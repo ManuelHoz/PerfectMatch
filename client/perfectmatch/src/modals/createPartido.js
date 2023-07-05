@@ -58,7 +58,7 @@ const CrearPartido = ({ modal, toggle, save }) => {
       <ModalBody>
         <form>
           <div className="form-group">
-            <label className="text-center">Nombre del Partido</label>
+            <label className="text-center">Nombre del partido</label>
             <input
               type="text"
               className="form-control"
@@ -86,7 +86,7 @@ const CrearPartido = ({ modal, toggle, save }) => {
           </div>
           <div className="form-group d-flex">
             <div className="mr-2 flex-grow-1">
-              <label className="text-center">Seleccionar opción 1</label>
+              <label className="text-center">Tipo de actividad </label>
               <select
                 className="form-control"
                 value={SelectedOption}
@@ -101,7 +101,7 @@ const CrearPartido = ({ modal, toggle, save }) => {
               </select>
             </div>
             <div className="flex-grow-1">
-              <label className="text-center">Seleccionar opción 2</label>
+              <label className="text-center">Accion a realizar</label>
               <select
                 className="form-control"
                 value={SelectedOption2}

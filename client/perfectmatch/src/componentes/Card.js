@@ -53,7 +53,7 @@ const Card = ({ PartidoObj, index, BorrarPartido, actualizarListaenArreglo }) =>
       <div className="card-top" style={{ backgroundColor: colors[index % 5].primaryColor, width: '100%' }}></div>
       <div className="task-holder" style={{ marginTop: '10px', marginBottom: '10px' }}>
         <span
-          className="card-header"
+          className="card-header my-card-header" // Clase personalizada para el CardHeader
           style={{
             backgroundColor: colors[index % 5].secondaryColor,
             borderRadius: '10px',

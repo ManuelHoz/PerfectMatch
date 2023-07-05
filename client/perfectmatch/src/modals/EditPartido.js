@@ -63,11 +63,11 @@ const EditarPartido = ({ modal, toggle, ActualizarPartido, PartidoObj }) => {
       <ModalHeader toggle={toggle}>Actualizar Partido</ModalHeader>
       <ModalBody>
         <div className="form-group">
-          <label>Titulo</label>
+          <label>Nombre del partido</label>
           <input type="text" className="form-control" value={PartidoName} onChange={handleChange} name="PartidoName" />
         </div>
         <div className="form-group">
-          <label>Descripción</label>
+          <label>Descripción del evento</label>
           <textarea rows="5" className="form-control" value={description} onChange={handleChange} name="description"></textarea>
         </div>
         <div className="form-group">
@@ -76,7 +76,7 @@ const EditarPartido = ({ modal, toggle, ActualizarPartido, PartidoObj }) => {
         </div>
         <div className="form-group d-flex">
           <div className="mr-2 flex-grow-1">
-            <label>Seleccionar opción 1</label>
+            <label>Tipo de actividad</label>
             <select className="form-control" value={SelectedOption} onChange={handleChange} name="selectedOption">
               <option value="">Seleccionar opción</option>
               <option value="Actividad Fisica">Actividad Fisica</option>
@@ -84,7 +84,7 @@ const EditarPartido = ({ modal, toggle, ActualizarPartido, PartidoObj }) => {
             </select>
           </div>
           <div className="flex-grow-1">
-            <label>Seleccionar opción 2</label>
+            <label>Accion a realizar</label>
             <select className="form-control" value={SelectedOption2} onChange={handleChange} name="selectedOption2">
               <option value="">Seleccionar opción</option>
               {Options2.map((option, index) => (
