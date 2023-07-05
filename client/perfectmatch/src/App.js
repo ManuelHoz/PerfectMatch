@@ -1,20 +1,33 @@
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { LoginButton } from './Login';
-import { LogoutButton } from './Logout';
+import { useAuth0 } from '@auth0/auth0-react';
+import LoginButton from './Login';
+import Profile from './Profile';
+import LogoutButton from './Logout';
 import ListaDePartidos from './componentes/ListaDePartidos';
-import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
+  const { isAuthenticated } = useAuth0();
+
   return (
     <div className="App">
-      <header>
-        <LoginButton />
-        <LogoutButton />
-      </header>
-      <body>
-        <ListaDePartidos />
-      </body>
+      <div className="header">
+        <div className="logo-container">
+          <img src={logo} alt="Logo" className="logo" />
+        </div>
+        <div className="auth-buttons-container">
+          <LoginButton />
+          <LogoutButton />
+        </div>
+        {isAuthenticated && <Profile />}
+      </div>
+      <main className="main-container"> {/* Agregar una nueva clase "main-container" */}
+        <div className="partidos-container">
+          <ListaDePartidos />
+        </div>
+      </main>
     </div>
   );
 }
