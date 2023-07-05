@@ -10,10 +10,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect } from 'react';
 
 function App() {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
   useEffect(() => {
     console.log("isAuthenticated: ", isAuthenticated);
-  }, [isAuthenticated]);
+    console.log("user: ", user);
+  }, [isAuthenticated, user]);
 
   return (
     <div className="App">
@@ -22,10 +23,10 @@ function App() {
           <img src={logo} alt="Logo" className="logo" />
         </div>
         <div className="auth-buttons-container">
+          {isAuthenticated && <Profile />}
         {isAuthenticated ? <LogoutButton /> : <LoginButton />}
-        
         </div>
-        {isAuthenticated && <Profile />}
+        
       </div>
       <main className="main-container"> {/* Agregar una nueva clase "main-container" */}
         <div className="partidos-container">
