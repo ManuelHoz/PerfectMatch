@@ -105,3 +105,9 @@
 .partidos-container {
   margin-top: -200px; /* Ajusta el valor según sea necesario */
 }
+.modal-header {
+  text-align: center;
+}
+.centered-text {
+  text-align: center;
+}
