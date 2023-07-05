@@ -7,9 +7,13 @@ import Profile from './Profile';
 import LogoutButton from './Logout';
 import ListaDePartidos from './componentes/ListaDePartidos';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useEffect } from 'react';
 
 function App() {
   const { isAuthenticated } = useAuth0();
+  useEffect(() => {
+    console.log("isAuthenticated: ", isAuthenticated);
+  }, [isAuthenticated]);
 
   return (
     <div className="App">
@@ -18,8 +22,8 @@ function App() {
           <img src={logo} alt="Logo" className="logo" />
         </div>
         <div className="auth-buttons-container">
-          <LoginButton />
-          <LogoutButton />
+        {isAuthenticated ? <LogoutButton /> : <LoginButton />}
+        
         </div>
         {isAuthenticated && <Profile />}
       </div>
