@@ -22,9 +22,11 @@ function App() {
         <div className="logo-container">
           <img src={logo} alt="Logo" className="logo" />
         </div>
+        <div className="user-container">
         <div className="auth-buttons-container">
           {isAuthenticated && <Profile />}
         {isAuthenticated ? <LogoutButton /> : <LoginButton />}
+        </div>
         </div>
         
       </div>
