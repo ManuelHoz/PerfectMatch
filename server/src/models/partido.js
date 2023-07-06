@@ -9,14 +9,23 @@ const Partido = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    titulo: {
+    NombreDelPartido: {
       type: DataTypes.STRING,
     },
-    descripcion: {
+    DescripcionDelEvento: {
       type: DataTypes.STRING,
     },
     capacidadMaxima: {
       type: DataTypes.INTEGER,
+    },
+    HorarioDeActividad:{
+      type: DataTypes.STRING,
+    },
+    TipoDeActividad:{
+      type: DataTypes.STRING,
+    },
+    AccionARealizar:{
+      type: DataTypes.STRING,
     },
   },
   {

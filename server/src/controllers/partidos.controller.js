@@ -20,16 +20,17 @@ const getOnePartido = async (req, res) => {
 
 // Crear un partido
 const createPartido = async (req, res) => {
-  const { titulo, descripcion, capacidadMaxima } = req.body;
+  const { NombreDelPartido, DescripcionDelEvento, capacidadMaxima } = req.body;
 
-  if (!titulo || !descripcion || !capacidadMaxima) {
+  if (!NombreDelPartido || !DescripcionDelEvento || !capacidadMaxima) {
     return res.status(400).json({ error: "Content missing" });
   }
-
+  
   const partido = await Partido.create({
-    titulo,
-    descripcion,
+    NombreDelPartido,
+    DescripcionDelEvento,
     capacidadMaxima,
+    
   });
 
   res.status(201).json(partido);
@@ -38,7 +39,7 @@ const createPartido = async (req, res) => {
 // Actualizar un partido
 const updatePartido = async (req, res) => {
   const { id } = req.params;
-  const { titulo, descripcion, capacidadMaxima } = req.body;
+  const {NombreDelPartido, DescripcionDelEvento, capacidadMaxima } = req.body;
 
   try {
     const partido = await Partido.findByPk(id);
@@ -47,8 +48,8 @@ const updatePartido = async (req, res) => {
       return res.status(404).json({ error: "Partido not found" });
     }
 
-    partido.titulo = titulo;
-    partido.descripcion = descripcion;
+    partido.NombreDelPartido = NombreDelPartido;
+    partido.DescripcionDelEvento = DescripcionDelEvento;
     partido.capacidadMaxima = capacidadMaxima;
 
     await partido.save();
