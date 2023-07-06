@@ -50,13 +50,14 @@ const EditarPartido = ({ modal, toggle, ActualizarPartido, PartidoObj }) => {
   const handleUpdate = (e) => {
     e.preventDefault();
     const updatedPartido = {
+      id: PartidoObj.id,
       Name: PartidoName,
       Description: description,
       SelectedOption,
       SelectedOption2,
       Horario,
     };
-    ActualizarPartido(revertirTransformacion(updatedPartido));
+    ActualizarPartido(updatedPartido);
   };
 
   return (

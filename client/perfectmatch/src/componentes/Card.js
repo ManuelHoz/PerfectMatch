@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import EditTask from '../modals/EditPartido.js';
+import { transformarJson, revertirTransformacion, PborrarPartido, PactualizarPartido } from '../funciones/peticionesPartido.js';
 
 const Card = ({ PartidoObj, index, BorrarPartido, actualizarListaenArreglo }) => {
   const [modal, setModal] = useState(false);
@@ -34,7 +35,11 @@ const Card = ({ PartidoObj, index, BorrarPartido, actualizarListaenArreglo }) =>
   };
 
   const ActualizarPartido = (obj) => {
+    const jsonBackend = transformarJson(obj);
+    PactualizarPartido(obj.id, jsonBackend);
     actualizarListaenArreglo(obj, index);
+
+    
   };
 
   const handleBorrar = () => {

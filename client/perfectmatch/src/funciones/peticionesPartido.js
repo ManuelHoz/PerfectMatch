@@ -16,7 +16,8 @@ export async function PborrarPartido(index) {
 
 export async function PactualizarPartido(id, partido) {
   try {
-    const response = await axios.put(`http://localhost:4000/partido/${id}`, partido);
+    const partido_en_formato=transformarJson(partido);
+    const response = await axios.put(`http://localhost:4000/partido/${id}`, partido_en_formato);
     // Manejar la respuesta según sea necesario
   } catch (error) {
     // Manejar el error según sea necesario
@@ -37,6 +38,7 @@ export async function PobtenerPartidos() {
 
 export function transformarJson(json) {
   const nuevoJson = {
+    id: json.id,
     NombreDelPartido: json.Name,
     DescripcionDelEvento: json.Description,
     capacidadMaxima: json.integrantes,
@@ -51,6 +53,7 @@ export function transformarJson(json) {
 
 export function revertirTransformacion(json) {
   const nuevoJson = {
+    id: json.id,
     Name: json.NombreDelPartido,
     Description: json.DescripcionDelEvento,
     SelectedOption: json.TipoDeActividad,
