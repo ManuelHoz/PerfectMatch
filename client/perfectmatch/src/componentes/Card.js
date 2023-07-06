@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import EditTask from '../modals/EditPartido.js';
 import { transformarJson, revertirTransformacion, PborrarPartido, PactualizarPartido } from '../funciones/peticionesPartido.js';

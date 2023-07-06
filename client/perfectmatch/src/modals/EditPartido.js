@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { PactualizarPartido , transformarJson, revertirTransformacion} from '../funciones/peticionesPartido';

@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import CrearPartido from "../modals/createPartido";
 import Card from "./Card";
