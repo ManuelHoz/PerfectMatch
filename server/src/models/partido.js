@@ -9,6 +9,7 @@ const Partido = sequelize.define(
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
+      initialAutoIncrement: 1, 
     },
     NombreDelPartido: {
       type: DataTypes.STRING,
@@ -28,9 +29,8 @@ const Partido = sequelize.define(
     AccionARealizar: {
       type: DataTypes.STRING,
     },
-    deportistaId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+    CreadorPorNickname: {
+      type: DataTypes.STRING,
     },
   },
   {

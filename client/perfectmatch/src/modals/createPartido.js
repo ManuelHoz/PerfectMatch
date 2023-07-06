@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import {  createMatch} from "../funciones/peticionesPartido"
+import { useAuth0 } from "@auth0/auth0-react";
+
 
 const CrearPartido = ({ modal, toggle, save }) => {
   const [PartidoName, setPartidoName] = useState("");
@@ -11,6 +12,7 @@ const CrearPartido = ({ modal, toggle, save }) => {
   const [Horario, setHorario] = useState("");
   const [integrantes, setIntegrantes] = useState("");
 
+  const { isAuthenticated, user } = useAuth0();
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === "PartidoName") {
@@ -45,9 +47,9 @@ const CrearPartido = ({ modal, toggle, save }) => {
     PartidoObj["SelectedOption2"] = SelectedOption2;
     PartidoObj["Horario"] = Horario;
     PartidoObj["integrantes"] = integrantes;
-
+    PartidoObj["user"] = user.nickname;
     save(PartidoObj);
-    createMatch(PartidoObj)
+    console.log(PartidoObj);
   };
 
   const handleFocus = (e) => {

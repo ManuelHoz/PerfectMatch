@@ -1,4 +1,4 @@
-const Partido = require("../models/partido.js")
+const Partido = require("../models/partido.js");
 
 // Obtener todos los partidos
 const getPartidos = async (req, res) => {
@@ -20,26 +20,45 @@ const getOnePartido = async (req, res) => {
 
 // Crear un partido
 const createPartido = async (req, res) => {
-  const { NombreDelPartido, DescripcionDelEvento, capacidadMaxima } = req.body;
-
-  if (!NombreDelPartido || !DescripcionDelEvento || !capacidadMaxima) {
-    return res.status(400).json({ error: "Content missing" });
-  }
-  
-  const partido = await Partido.create({
+  const {
     NombreDelPartido,
     DescripcionDelEvento,
     capacidadMaxima,
-    
-  });
+    HorarioDeActividad,
+    TipoDeActividad,
+    AccionARealizar,
+    CreadorPorNickname,
+  } = req.body;
 
-  res.status(201).json(partido);
+  try {
+    const partido = await Partido.create({
+      NombreDelPartido,
+      DescripcionDelEvento,
+      capacidadMaxima,
+      HorarioDeActividad,
+      TipoDeActividad,
+      AccionARealizar,
+      CreadorPorNickname,
+    });
+
+    res.status(201).json(partido);
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
 };
 
 // Actualizar un partido
 const updatePartido = async (req, res) => {
   const { id } = req.params;
-  const {NombreDelPartido, DescripcionDelEvento, capacidadMaxima } = req.body;
+  const {
+    NombreDelPartido,
+    DescripcionDelEvento,
+    capacidadMaxima,
+    HorarioDeActividad,
+    TipoDeActividad,
+    AccionARealizar,
+    CreadorPorNickname,
+  } = req.body;
 
   try {
     const partido = await Partido.findByPk(id);
@@ -47,10 +66,13 @@ const updatePartido = async (req, res) => {
     if (!partido) {
       return res.status(404).json({ error: "Partido not found" });
     }
-
     partido.NombreDelPartido = NombreDelPartido;
     partido.DescripcionDelEvento = DescripcionDelEvento;
     partido.capacidadMaxima = capacidadMaxima;
+    partido.HorarioDeActividad = HorarioDeActividad;
+    partido.TipoDeActividad = TipoDeActividad;
+    partido.AccionARealizar = AccionARealizar;
+    partido.CreadorPorNickname = CreadorPorNickname;
 
     await partido.save();
 
@@ -60,7 +82,6 @@ const updatePartido = async (req, res) => {
   }
 };
 
-// Eliminar un partido
 const deletePartido = async (req, res) => {
   const { id } = req.params;
 
