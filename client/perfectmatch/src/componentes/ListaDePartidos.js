@@ -14,6 +14,8 @@ const ListaDePartidos = () => {
     if (arr) {
       let obj = JSON.parse(arr);
       SetListaPartidos(obj);
+      console.log(obj);
+      console.log(obj);
     }
   }, []);
   const BorrarPartido = (index) => {

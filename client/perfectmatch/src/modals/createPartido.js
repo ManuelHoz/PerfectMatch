@@ -8,6 +8,7 @@ const CrearPartido = ({ modal, toggle, save }) => {
   const [SelectedOption2, setSelectedOption2] = useState("");
   const [Options2, setOptions2] = useState([]);
   const [Horario, setHorario] = useState("");
+  const [integrantes, setIntegrantes] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,6 +31,9 @@ const CrearPartido = ({ modal, toggle, save }) => {
     } else if (name === "horario") {
       setHorario(value);
     }
+    else if (name === "integrantes") {
+      setIntegrantes(value);
+    }
   };
 
   const handleSave = () => {
@@ -39,6 +43,8 @@ const CrearPartido = ({ modal, toggle, save }) => {
     PartidoObj["SelectedOption"] = SelectedOption;
     PartidoObj["SelectedOption2"] = SelectedOption2;
     PartidoObj["Horario"] = Horario;
+    PartidoObj["integrantes"] = integrantes;
+
     save(PartidoObj);
   };
 
@@ -132,6 +138,19 @@ const CrearPartido = ({ modal, toggle, save }) => {
               placeholder="Escribe aquí"
               style={{ whiteSpace: "nowrap" }}
             ></textarea>
+          </div>
+          <div className="form-group">
+            <label className="text-center">Maximo de integrantes</label>
+            <input
+              type="number"
+              className="form-control"
+              value={integrantes}
+              onChange={handleChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              name="integrantes"
+              placeholder="Escribe aquí"
+            />
           </div>
         </form>
       </ModalBody>

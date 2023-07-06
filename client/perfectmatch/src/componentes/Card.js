@@ -79,7 +79,9 @@ const Card = ({ PartidoObj, index, BorrarPartido, actualizarListaenArreglo }) =>
         <p className="mt-200">
           Descripcion: {PartidoObj.Description}
         </p>
-
+        <p className="mt-20">
+          Integrantes: {PartidoObj.integrantes}
+        </p>
         <div style={{ position: 'absolute', right: '20px', bottom: '20px' }}>
           <i
             className="far fa-edit mr-3"
