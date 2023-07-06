@@ -58,6 +58,12 @@ const EditarPartido = ({ modal, toggle, ActualizarPartido, PartidoObj }) => {
       SelectedOption2,
       Horario,
     };
+    try {
+      PactualizarPartido(updatedPartido.id, updatedPartido);
+    }
+    catch (error) {
+      console.error("Error al actualizar el partido:", error);
+    }
     ActualizarPartido(updatedPartido);
   };
 
