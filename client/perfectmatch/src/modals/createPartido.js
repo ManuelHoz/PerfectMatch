@@ -38,7 +38,7 @@ const CrearPartido = ({ modal, toggle, save }) => {
       setIntegrantes(value);
     }
   };
-
+//
   const handleSave = () => {
     const PartidoObj = {};
     PartidoObj["Name"] = PartidoName;

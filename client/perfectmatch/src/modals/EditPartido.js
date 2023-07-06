@@ -59,7 +59,7 @@ const EditarPartido = ({ modal, toggle, ActualizarPartido, PartidoObj }) => {
     };
     ActualizarPartido(updatedPartido);
   };
-
+//
   return (
     <Modal isOpen={modal} toggle={toggle}>
       <ModalHeader toggle={toggle}>Actualizar Partido</ModalHeader>

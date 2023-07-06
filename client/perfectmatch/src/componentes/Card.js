@@ -68,7 +68,7 @@ const Card = ({ PartidoObj, index, BorrarPartido, actualizarListaenArreglo }) =>
         >
           {PartidoObj.Name}
         </span>
-        
+        {/***/}
         <p className="mt-3">
           Horario: {PartidoObj.Horario}
         </p>

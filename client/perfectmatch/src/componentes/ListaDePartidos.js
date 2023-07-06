@@ -3,6 +3,7 @@ import CrearPartido from "../modals/createPartido";
 import Card from "./Card";
 import { PcrearPartido , PborrarPartido, transformarJson, revertirTransformacion, PobtenerPartidos} from "../funciones/peticionesPartido";
 
+//
 const ListaDePartidos = () => {
   const [modal, setModal] = useState(false);
   const [ListaPartidos, SetListaPartidos] = useState([]);

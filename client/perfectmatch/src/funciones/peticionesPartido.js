@@ -23,7 +23,7 @@ export async function PactualizarPartido(id, partido) {
     // Manejar el error según sea necesario
   }
 }
-
+//
 export async function PobtenerPartidos() {
   try {
     const response = await axios.get('http://localhost:4000/partido/');
