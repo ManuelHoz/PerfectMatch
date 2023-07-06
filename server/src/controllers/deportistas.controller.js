@@ -52,4 +52,6 @@ const loginDeportista = async (req, res) => {
   }
 };
 
-module.exports = { getDeportistas, createDeportista, loginDeportista };
+
+
+module.exports = { getDeportistas, createDeportista, loginDeportista, getPartidosByDeportista };

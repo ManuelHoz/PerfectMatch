@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import {  createMatch} from "../funciones/peticionesPartido"
 
 const CrearPartido = ({ modal, toggle, save }) => {
   const [PartidoName, setPartidoName] = useState("");
@@ -46,6 +47,7 @@ const CrearPartido = ({ modal, toggle, save }) => {
     PartidoObj["integrantes"] = integrantes;
 
     save(PartidoObj);
+    createMatch(PartidoObj)
   };
 
   const handleFocus = (e) => {

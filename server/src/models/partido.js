@@ -1,6 +1,7 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../db/db.js");
 
+
 const Partido = sequelize.define(
   "Partido",
   {
@@ -18,14 +19,18 @@ const Partido = sequelize.define(
     capacidadMaxima: {
       type: DataTypes.INTEGER,
     },
-    HorarioDeActividad:{
+    HorarioDeActividad: {
       type: DataTypes.STRING,
     },
-    TipoDeActividad:{
+    TipoDeActividad: {
       type: DataTypes.STRING,
     },
-    AccionARealizar:{
+    AccionARealizar: {
       type: DataTypes.STRING,
+    },
+    deportistaId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
   },
   {

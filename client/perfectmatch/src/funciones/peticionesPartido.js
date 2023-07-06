@@ -22,7 +22,7 @@ const getPartidoById = async (partidoId) => {
 };
 
 // Función para crear un partido
-const createPartido = async (partidoData) => {
+const createMatch = async (partidoData) => {
   try {
     const response = await axios.post('http://localhost:3000/partido', partidoData);
     return response.data;
@@ -57,7 +57,7 @@ const deletePartido = async (partidoId) => {
 module.exports = {
   getPartidos,
   getPartidoById,
-  createPartido,
+  createMatch,
   updatePartido,
   deletePartido,
 };
