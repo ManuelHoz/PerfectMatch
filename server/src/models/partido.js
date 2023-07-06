@@ -28,9 +28,8 @@ const Partido = sequelize.define(
     AccionARealizar: {
       type: DataTypes.STRING,
     },
-    deportistaId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+    CreadorPorNickname: {
+      type: DataTypes.STRING,
     },
   },
   {

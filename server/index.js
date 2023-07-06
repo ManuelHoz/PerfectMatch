@@ -1,8 +1,7 @@
 const app = require("./src/app.js");
 const sequelize = require("./src/db/db.js");
 require("./src/models/partido.js");
-require("./src/models/administrador.js");
-require("./src/models/deportista.js");
+
 
 const PORT = process.env.PORT || 4000;
 
