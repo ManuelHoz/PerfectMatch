@@ -9,6 +9,7 @@ const Partido = sequelize.define(
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
+      initialAutoIncrement: 1, 
     },
     NombreDelPartido: {
       type: DataTypes.STRING,
