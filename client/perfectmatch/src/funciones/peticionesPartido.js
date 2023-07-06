@@ -1,63 +1,66 @@
-const axios = require('axios');
+import axios from 'axios';
 
-const getPartidos = async () => {
+export async function PcrearPartido(partido) {
   try {
-    const response = await axios.get('http://localhost:3000/partido');
-    return response.data;
+    const response = await axios.post('http://localhost:4000/partido/', partido);
   } catch (error) {
-    console.error(error);
-    throw new Error('Error al obtener los partidos');
   }
-};
+}
 
-
-const getPartidoById = async (partidoId) => {
+export async function PborrarPartido(index) {
   try {
-    const response = await axios.get(`http://localhost:3000/partido/${partidoId}`);
-    return response.data;
+    const response = await axios.delete(`http://localhost:4000/partido/${index}`);    
   } catch (error) {
-    console.error(error);
-    throw new Error('Error al obtener el partido');
   }
-};
+}
 
-// Función para crear un partido
-const createMatch = async (partidoData) => {
+export async function PactualizarPartido(id, partido) {
   try {
-    const response = await axios.post('http://localhost:3000/partido', partidoData);
-    return response.data;
+    const response = await axios.put(`http://localhost:4000/partido/${id}`, partido);
+    // Manejar la respuesta según sea necesario
   } catch (error) {
-    console.error(error);
-    throw new Error('Error al crear el partido');
+    // Manejar el error según sea necesario
   }
-};
+}
 
-
-const updatePartido = async (partidoId, partidoData) => {
+export async function PobtenerPartidos() {
   try {
-    const response = await axios.put(`http://localhost:3000/partido/${partidoId}`, partidoData);
-    return response.data;
+    const response = await axios.get('http://localhost:4000/partido/');
+    //convertir todos los json al otro formato
+    const partidos = response.data.map((partido) => {
+      return revertirTransformacion(partido);
+    });
+    return partidos;
   } catch (error) {
-    console.error(error);
-    throw new Error('Error al actualizar el partido');
   }
-};
+}
+
+export function transformarJson(json) {
+  const nuevoJson = {
+    NombreDelPartido: json.Name,
+    DescripcionDelEvento: json.Description,
+    capacidadMaxima: json.integrantes,
+    HorarioDeActividad: json.Horario,
+    TipoDeActividad: json.SelectedOption,
+    AccionARealizar: json.SelectedOption2,
+    CreadorPorNickname: json.user
+  };
+  
+  return nuevoJson;
+}
+
+export function revertirTransformacion(json) {
+  const nuevoJson = {
+    Name: json.NombreDelPartido,
+    Description: json.DescripcionDelEvento,
+    SelectedOption: json.TipoDeActividad,
+    SelectedOption2: json.AccionARealizar,
+    Horario: json.HorarioDeActividad,
+    integrantes: json.capacidadMaxima,
+    user: json.CreadorPorNickname
+  };
+  
+  return nuevoJson;
+}
 
 
-const deletePartido = async (partidoId) => {
-  try {
-    await axios.delete(`http://localhost:3000/partido/${partidoId}`);
-    console.log('Partido eliminado exitosamente');
-  } catch (error) {
-    console.error(error);
-    throw new Error('Error al eliminar el partido');
-  }
-};
-
-module.exports = {
-  getPartidos,
-  getPartidoById,
-  createMatch,
-  updatePartido,
-  deletePartido,
-};

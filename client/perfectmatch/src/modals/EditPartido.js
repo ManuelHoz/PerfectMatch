@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { PactualizarPartido , transformarJson, revertirTransformacion} from '../funciones/peticionesPartido';
 
 const EditarPartido = ({ modal, toggle, ActualizarPartido, PartidoObj }) => {
   const [PartidoName, setPartidoName] = useState('');
@@ -55,7 +56,7 @@ const EditarPartido = ({ modal, toggle, ActualizarPartido, PartidoObj }) => {
       SelectedOption2,
       Horario,
     };
-    ActualizarPartido(updatedPartido);
+    ActualizarPartido(revertirTransformacion(updatedPartido));
   };
 
   return (

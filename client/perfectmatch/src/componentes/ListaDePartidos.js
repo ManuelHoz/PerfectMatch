@@ -1,46 +1,63 @@
 import React, { useEffect, useState } from "react";
 import CrearPartido from "../modals/createPartido";
 import Card from "./Card";
+import { PcrearPartido , PborrarPartido, transformarJson, revertirTransformacion, PobtenerPartidos} from "../funciones/peticionesPartido";
 
 const ListaDePartidos = () => {
   const [modal, setModal] = useState(false);
   const [ListaPartidos, SetListaPartidos] = useState([]);
-  const toggle = () =>{
-     setModal(!modal);
-    }
+  const toggle = () => {
+    setModal(!modal);
+  };
 
   useEffect(() => {
-    let arr = localStorage.getItem("ListaPartidos");
-    if (arr) {
-      let obj = JSON.parse(arr);
-      SetListaPartidos(obj);
-      console.log(obj);
-      console.log(obj);
-    }
+    const obtenerPartidos = async () => {
+      try {
+        const partidos = await PobtenerPartidos();
+        SetListaPartidos(partidos);
+        console.log(partidos);
+      } catch (error) {
+        console.error("Error al obtener los partidos:", error);
+      }
+    };
+  
+    obtenerPartidos();
   }, []);
-  const BorrarPartido = (index) => {
-    let tempList = ListaPartidos;
-    tempList.splice(index, 1);
-    localStorage.setItem("ListaPartidos", JSON.stringify(tempList));
-    SetListaPartidos(tempList);
-    window.location.reload();
+  const BorrarPartido = async (index) => {
+    try {
+      await PborrarPartido(ListaPartidos[index].id);
+      const tempList = [...ListaPartidos];
+      tempList.splice(index, 1);
+      SetListaPartidos(tempList);
+      window.location.reload();
+    } catch (error) {
+      console.error("Error al borrar el partido:", error);
+    }
   };
 
-  const  actualizarListaenArreglo = (obj, index) => {
-    let tempList = ListaPartidos;
+  const actualizarListaenArreglo = (obj, index) => {
+    let tempList = [...ListaPartidos];
     tempList[index] = obj;
-    localStorage.setItem("ListaPartidos", JSON.stringify(tempList));
     SetListaPartidos(tempList);
     window.location.reload();
   };
 
-  const guardarPartido = (PartidoObj) => {
-    let tempList = ListaPartidos;
-    tempList.push(PartidoObj);
-    localStorage.setItem("ListaPartidos", JSON.stringify(tempList));
-    SetListaPartidos(tempList);
-    setModal(false);
+  /*hay que agregarle la api a esta*/
+
+  const guardarPartido = async (PartidoObj) => {
+    const jsonBackend = transformarJson(PartidoObj);
+    try {
+      await PcrearPartido(jsonBackend);
+      const tempList = [...ListaPartidos];
+      tempList.push(PartidoObj);
+      SetListaPartidos(tempList);
+      setModal(false);
+    } catch (error) {
+      console.error("Error al guardar el partido:", error);
+    }
   };
+
+  /*hay que agregarle la api a esta*/
 
   return (
     <>
@@ -51,9 +68,15 @@ const ListaDePartidos = () => {
         </button>
       </div>
       <div className="task-container">
-        {ListaPartidos && ListaPartidos.map((obj, index) => (
-          <Card PartidoObj={obj} index={index} BorrarPartido={BorrarPartido} actualizarListaenArreglo={ actualizarListaenArreglo} />
-        ))}
+        {ListaPartidos &&
+          ListaPartidos.map((obj, index) => (
+            <Card
+              PartidoObj={obj}
+              index={index}
+              BorrarPartido={BorrarPartido}
+              actualizarListaenArreglo={actualizarListaenArreglo}
+            />
+          ))}
       </div>
       <CrearPartido toggle={toggle} modal={modal} save={guardarPartido} />
     </>
